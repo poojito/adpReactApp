@@ -7,7 +7,7 @@ type Props = {
 }
 
 // Hardcoded product data
-export const hardcodedProducts: Product[] = [
+const hardcodedProducts: Product[] = [
   {
     id: "1",
     name: "Wireless Headphones",
@@ -45,10 +45,12 @@ export const hardcodedProducts: Product[] = [
   }
 ];
 
-export const ProductList = (props: Props): ReactElement => {
+const ProductList = (props: Props): ReactElement => {
   const listOfProducts = props.products;
   return <div>
     <h1>{props.title}</h1>
     <pre>{JSON.stringify(listOfProducts, null, 2)}</pre>
   </div>
 }
+
+export {ProductList, hardcodedProducts};

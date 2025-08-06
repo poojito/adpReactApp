@@ -1,5 +1,5 @@
 import './App.css'
-import ProductList, { hardcodedProducts } from './ProductList'
+import {ProductList, hardcodedProducts } from './ProductList'
 
 function App() {
   return (
