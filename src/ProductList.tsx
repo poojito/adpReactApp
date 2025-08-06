@@ -1,9 +1,14 @@
 import type { ReactElement } from "react"
 import type { Product } from './types/Product'
+import { productListStyles, productCardStyles } from './styles/ProductList.styles'
 
 type Props = {
   products: Array<Product>,
   title: string
+}
+
+type ProductProp = {
+  product: Product
 }
 
 // Hardcoded product data
@@ -45,12 +50,35 @@ const hardcodedProducts: Product[] = [
   }
 ];
 
+const ProductCard = (props: ProductProp): ReactElement => {
+  const product = props.product;
+  return (
+    <div style={productCardStyles.card}>
+      <div style={productCardStyles.header}>
+        <h2 style={productCardStyles.name}>{product.name}</h2>
+        <span style={productCardStyles.category}>{product.category}</span>
+      </div>
+      
+      <p style={productCardStyles.price}>${product.price.toFixed(2)}</p>
+      
+      <p style={productCardStyles.description}>{product.description}</p>
+    </div>
+  )
+}
+
 const ProductList = (props: Props): ReactElement => {
   const listOfProducts = props.products;
-  return <div>
-    <h1>{props.title}</h1>
-    <pre>{JSON.stringify(listOfProducts, null, 2)}</pre>
-  </div>
+  return (
+    <div style={productListStyles.container}>
+      <h1 style={productListStyles.title}>{props.title}</h1>
+      
+      <div style={productListStyles.grid}>
+        {listOfProducts.map(product => (
+          <ProductCard key={product.id} product={product}/>
+        ))}
+      </div>
+    </div>
+  )
 }
 
 export {ProductList, hardcodedProducts};
